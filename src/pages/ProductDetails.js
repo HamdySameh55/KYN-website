@@ -1,4 +1,4 @@
-// src/pages/ProductDetails.jsx - Final Version + Size Chart + Swipe Navigation + Pre-Order Price Fix
+// src/pages/ProductDetails.jsx - Final Version + Size Chart + Swipe Navigation + Pre-Order Price Fix + Scroll To Top
 
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -101,6 +101,11 @@ export default function ProductDetails() {
   const product = allProducts.find(p => p.id === parseInt(id));
   const productImages = product?.images || [];
 
+  // Scroll to top when component mounts (لما تدخل الصفحة)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]); // كل ما الـ id يتغير = منتج جديد = ارجع فوق
+
   useEffect(() => {
     if (product && productImages.length > 0) {
       setSelectedColor(product.colors[0]);
@@ -165,7 +170,7 @@ export default function ProductDetails() {
   }
 
   const basePrice = parseFloat(product.price.replace(" EGP", ""));
-  const displayedPrice = product.soldOut ? basePrice : basePrice; // دايمًا السعر الأصلي في الـ UI
+  const displayedPrice = product.soldOut ? basePrice : basePrice;
 
   const mainImage = productImages[mainImageIndex];
 
@@ -419,156 +424,140 @@ export default function ProductDetails() {
                 </motion.button>
               </div>
 
-{/* 🔥 Wrapper يخلي الاتنين جنب بعض */}
-<div style={{
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  gap: "30px",
-  marginTop: "40px",
-  flexWrap: "wrap"
-}}>
+              {/* Size Guide + Washing Instructions */}
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: "30px",
+                marginTop: "40px",
+                flexWrap: "wrap"
+              }}>
+                {/* Size Guide */}
+                <div style={{
+                  flex: "1",
+                  minWidth: "330px",
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1.5px solid rgba(0,255,200,0.25)",
+                  borderRadius: "20px",
+                  padding: "25px",
+                  boxShadow: "0 0 20px rgba(0, 255, 200, 0.2)",
+                  backdropFilter: "blur(10px)"
+                }}>
+                  <h3 style={{
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    marginBottom: "15px",
+                    color: "#00ffe1",
+                    letterSpacing: "2px",
+                    textShadow: "0 0 10px #00ffe1"
+                  }}>
+                    Size Guide (cm)
+                  </h3>
 
-  {/* ===================== SIZE GUIDE ===================== */}
-  <div style={{
-    flex: "1",
-    minWidth: "330px",
-    background: "rgba(255,255,255,0.03)",
-    border: "1.5px solid rgba(0,255,200,0.25)",
-    borderRadius: "20px",
-    padding: "25px",
-    boxShadow: "0 0 20px rgba(0, 255, 200, 0.2)",
-    backdropFilter: "blur(10px)"
-  }}>
-    <h3 style={{
-      fontSize: "2rem",
-      fontWeight: "bold",
-      textAlign: "center",
-      marginBottom: "15px",
-      color: "#00ffe1",
-      letterSpacing: "2px",
-      textShadow: "0 0 10px #00ffe1"
-    }}>
-      Size Guide (cm)
-    </h3>
+                  <div style={{
+                    width: "100%",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.2)"
+                  }}>
+                    <div style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr",
+                      background: "rgba(0,255,200,0.15)",
+                      padding: "15px 0",
+                      color: "#fff",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      textAlign: "center"
+                    }}>
+                      <div>Size</div>
+                      <div>Length</div>
+                      <div>Width</div>
+                    </div>
 
-    <div style={{
-      width: "100%",
-      borderRadius: "14px",
-      overflow: "hidden",
-      border: "1px solid rgba(255,255,255,0.2)"
-    }}>
+                    {[
+                      ["S", 61, 58],
+                      ["M", 64, 61],
+                      ["L", 66, 64],
+                      ["XL", 70, 68],
+                      ["XXL", 73, 71]
+                    ].map((row, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "1fr 1fr 1fr",
+                          padding: "14px 0",
+                          background: i % 2 === 0 ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.02)",
+                          color: "#eee",
+                          fontSize: "1.1rem",
+                          textAlign: "center",
+                          borderBottom: "1px solid rgba(255,255,255,0.1)"
+                        }}
+                      >
+                        <div>{row[0]}</div>
+                        <div>{row[1]}</div>
+                        <div>{row[2]}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-      {/* Header */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        background: "rgba(0,255,200,0.15)",
-        padding: "15px 0",
-        color: "#fff",
-        fontWeight: "bold",
-        fontSize: "1.2rem",
-        textAlign: "center"
-      }}>
-        <div>Size</div>
-        <div>Length</div>
-        <div>Width</div>
-      </div>
+                {/* Washing Instructions */}
+                <div style={{
+                  flex: "1",
+                  minWidth: "330px",
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1.5px solid rgba(255,255,255,0.15)",
+                  borderRadius: "20px",
+                  padding: "25px",
+                  boxShadow: "0 0 25px rgba(255,255,255,0.15)",
+                  backdropFilter: "blur(10px)"
+                }}>
+                  <h3 style={{
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    marginBottom: "20px",
+                    color: "#fff",
+                    letterSpacing: "2px",
+                    textShadow: "0 0 8px #fff"
+                  }}>
+                    Washing<br />Instructions
+                  </h3>
 
-      {/* Rows */}
-      {[
-        ["S", 61, 58],
-        ["M", 64, 61],
-        ["L", 66, 64],
-        ["XL", 70, 68],
-        ["XXL", 73, 71]
-      ].map((row, i) => (
-        <div
-          key={i}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            padding: "14px 0",
-            background: i % 2 === 0 ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.02)",
-            color: "#eee",
-            fontSize: "1.1rem",
-            textAlign: "center",
-            borderBottom: "1px solid rgba(255,255,255,0.1)"
-          }}
-        >
-          <div>{row[0]}</div>
-          <div>{row[1]}</div>
-          <div>{row[2]}</div>
-        </div>
-      ))}
-    </div>
-  </div>
-
-
-  {/* ===================== WASHING INSTRUCTIONS ===================== */}
-  <div style={{
-    flex: "1",
-    minWidth: "330px",
-    background: "rgba(255,255,255,0.03)",
-    border: "1.5px solid rgba(255,255,255,0.15)",
-    borderRadius: "20px",
-    padding: "25px",
-    boxShadow: "0 0 25px rgba(255,255,255,0.15)",
-    backdropFilter: "blur(10px)"
-  }}>
-    <h3 style={{
-      fontSize: "2rem",
-      fontWeight: "bold",
-      textAlign: "center",
-      marginBottom: "20px",
-      color: "#fff",
-      letterSpacing: "2px",
-      textShadow: "0 0 8px #fff"
-    }}>
-      Washing<br />Instructions
-    </h3>
-
-    <ul style={{
-      listStyle: "none",
-      padding: "0",
-      margin: "0",
-      display: "flex",
-      flexDirection: "column",
-      gap: "12px",
-      fontSize: "1.2rem",
-      color: "rgba(255,255,255,0.85)"
-    }}>
-      <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
-        Turn t-shirt inside-out before washing it
-      </li>
-
-      <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
-        Wash it on a gentle cycle
-      </li>
-
-      <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
-        Wash at low temperature, preferably cold water
-      </li>
-
-    <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
-        Iron the t-shirt inside-out — never iron directly on the print
-      </li>
-    </ul>
-  </div>
-  {/* closing الـ Washing Instructions */}
-
-</div>
-{/* closing الـ Wrapper بتاع Size Guide & Washing Instructions */}
+                  <ul style={{
+                    listStyle: "none",
+                    padding: "0",
+                    margin: "0",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "12px",
+                    fontSize: "1.2rem",
+                    color: "rgba(255,255,255,0.85)"
+                  }}>
+                    <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
+                      Turn t-shirt inside-out before washing it
+                    </li>
+                    <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
+                      Wash it on a gentle cycle
+                    </li>
+                    <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
+                      Wash at low temperature, preferably cold water
+                    </li>
+                    <li style={{ borderLeft: "3px solid #00ffe1", paddingLeft: "12px" }}>
+                      Iron the t-shirt inside-out — never iron directly on the print
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
             </motion.div>
-            {/* closing الـ Details Section motion.div */}
           </div>
-          {/* closing الـ Details Section div */}
         </motion.div>
-        {/* closing الـ grid الرئيسي */}
       </div>
-     
     </div>
-   
   );
 }

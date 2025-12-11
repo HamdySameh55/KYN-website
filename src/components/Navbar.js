@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [secondPhone, setSecondPhone] = useState(''); // Optional second number
+  const [secondPhone, setSecondPhone] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
 
@@ -33,25 +33,25 @@ export default function Navbar() {
   const SHIPPING_COST = 100;
 
   const totalAmount = cartItems.reduce((sum, item) => {
-    const displayPrice = item.isPreOrder ? FULL_PRICE : parseFloat(item.price.replace(/[^0-9.]/g, ''))  0;
+    const displayPrice = item.isPreOrder ? FULL_PRICE : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
     return sum + displayPrice * item.quantity;
   }, 0);
 
   const grandTotal = totalAmount + SHIPPING_COST;
 
   const submitOrder = async () => {
-    if (!name  !phone  !address) {
+    if (!name || !phone || !address) {
       alert('Please fill in all required fields.');
       return;
     }
 
     const itemsList = cartItems.map(item => {
-      const displayPrice = item.isPreOrder ? FULL_PRICE : parseFloat(item.price.replace(/[^0-9.]/g, ''))  0;
+      const displayPrice = item.isPreOrder ? FULL_PRICE : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
       return `• ${item.name}
-  → Size: ${item.selectedSize  '—'}
-  → Qty: ${item.quantity}
-  → Price: ${displayPrice.toLocaleString()} EGP${item.isPreOrder ? ' (Pre-Order)' : ''}
-  → Subtotal: ${(displayPrice * item.quantity).toLocaleString()} EGP`;
+→ Size: ${item.selectedSize || '—'}
+→ Qty: ${item.quantity}
+→ Price: ${displayPrice.toLocaleString()} EGP${item.isPreOrder ? ' (Pre-Order)' : ''}
+→ Subtotal: ${(displayPrice * item.quantity).toLocaleString()} EGP`;
     }).join('\n\n');
 
     const message = `
@@ -81,15 +81,27 @@ Thank you!
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name, phone, second_phone: secondPhone, address, notes,
-          subtotal: totalAmount, shipping: SHIPPING_COST, total: grandTotal,
-          items_count: cartCount, order_details: message,
+          name,
+          phone,
+          second_phone: secondPhone,
+          address,
+          notes,
+          subtotal: totalAmount,
+          shipping: SHIPPING_COST,
+          total: grandTotal,
+          items_count: cartCount,
+          order_details: message,
         }),
       });
 
       setOrderSent(true);
       clearCart();
-      setName(''); setPhone(''); setSecondPhone(''); setAddress(''); setNotes('');
+      setName('');
+      setPhone('');
+      setSecondPhone('');
+      setAddress('');
+      setNotes('');
+      setStep(3);
     } catch (err) {
       alert('Error sending order. Please contact us on WhatsApp.');
     }
@@ -101,6 +113,11 @@ Thank you!
     setStep(1);
   };
 
+  // دالة جديدة لإغلاق الـ mobile menu بعد الضغط على أي رابط
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <style jsx>{`
@@ -108,8 +125,7 @@ Thank you!
         .container { max-width: 1600px; margin: 0 auto; padding: 0 2rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
         .logo { height: 82px; animation: spin 20s linear infinite; filter: drop-shadow(0 0 40px rgba(255,255,255,.7)); transition: all 0.4s ease; }
         .logo:hover { transform: scale(1.35); filter: drop-shadow(0 0 90px white); }
-        @keyframes spin { from { transform: rotateY(
-0deg); } to { transform: rotateY(360deg); } }
+        @keyframes spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
         .desktop-menu { display: flex; gap: 4.5rem; }
         .nav-link { color: #aaa; font-size: 1.1rem; font-weight:400; padding:0.7rem 1.8rem; border-radius:16px; text-decoration:none !important; transition:all .3s; }
         .nav-link:hover { color:#fff; background:rgba(255,255,255,.1); }
@@ -137,12 +153,22 @@ Thank you!
         .form-group label { display:flex; align-items:center; gap:8px; color:#ccc; font-size:.95rem; }
         .form-group input,.form-group textarea { padding:14px; border-radius:12px; border:none; background:rgba(255,255,255,.08); color:white; font-size:1rem; }
         .form-group input::placeholder,.form-group textarea::placeholder { color:#777; }
+
+        /* Mobile Menu Styles */
+        .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.98); z-index: 1500; display: flex; flex-direction: column; padding: 20px; }
+        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .mobile-menu-links { display: flex; flex-direction: column; gap: 20px; }
+        .mobile-link { color: #aaa; font-size: 1.6rem; font-weight: 500; text-decoration: none; padding: 12px 0; transition: all .3s; }
+        .mobile-link:hover { color: #fff; }
+        .mobile-link.active { color: #00ff88; font-weight: bold; }
       `}</style>
-<nav className="navbar">
+
+      <nav className="navbar">
         <div className="container">
           <div className="desktop-only">
             <Link to="/"><motion.img src={Logo} alt="KYN" className="logo" whileHover={{ scale: 1.35 }} /></Link>
           </div>
+
           <div className="desktop-menu desktop-only">
             {navLinks.map(link => (
               <Link key={link.name} to={link.path} className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}>
@@ -150,10 +176,15 @@ Thank you!
               </Link>
             ))}
           </div>
-          <button onClick={() => setIsMobileMenuOpen(true)} className="icon-btn mobile-only"><Menu size={32} /></button>
+
+          <button onClick={() => setIsMobileMenuOpen(true)} className="icon-btn mobile-only">
+            <Menu size={32} />
+          </button>
+
           <div className="mobile-only mobile-logo">
             <Link to="/"><motion.img src={Logo} alt="KYN" className="logo" style={{height:'72px'}} whileTap={{ scale: 0.92 }}/></Link>
           </div>
+
           <div onClick={() => { setIsCartOpen(true); setStep(1); setOrderSent(false); }} className="icon-btn relative cursor-pointer">
             <ShoppingBag size={32} strokeWidth={2.3} />
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
@@ -161,17 +192,54 @@ Thank you!
         </div>
       </nav>
 
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              className="mobile-menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="mobile-menu-header">
+                <motion.img src={Logo} alt="KYN" style={{ height: '60px' }} />
+                <button onClick={() => setIsMobileMenuOpen(false)} className="icon-btn">
+                  <X size={32} />
+                </button>
+              </div>
+
+              <div className="mobile-menu-links">
+                {navLinks.map(link => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`mobile-link ${location.pathname === link.path ? 'active' : ''}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       <div className="page-spacer" />
 
+      {/* باقي الكود (الـ Cart) زي ما هو بدون أي تغيير */}
       <AnimatePresence>
         {isCartOpen && (
           <>
-            <motion.div className="fixed inset-0 bg-black/80 z-40" onClick={closeCart} />
+            <motion.div className="fixed inset-0 bg-black/80 z-40" onClick={closeCart} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
             <motion.div 
               className="cart-panel" 
               initial={{ x: "100%" }} 
               animate={{ x: 0 }} 
               exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <div className="cart-header">
                 <h2 className="cart-title">
@@ -191,7 +259,8 @@ Thank you!
                     <p style={{ marginTop: '30px', color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' }}>
                       Full Cash on Delivery
                     </p>
-<div style={{ marginTop: '40px', padding: '20px', background: 'rgba(0,255,136,0.1)', borderRadius: '16px', border: '2px solid #00ff88' }}>
+
+                    <div style={{ marginTop: '40px', padding: '20px', background: 'rgba(0,255,136,0.1)', borderRadius: '16px', border: '2px solid #00ff88' }}>
                       <p style={{ fontSize: '1.1rem', color: '#ccc', margin: '0 0 10px' }}>
                         Need to track your order or have any questions?
                       </p>
@@ -201,7 +270,7 @@ Thank you!
                         rel="noopener noreferrer"
                         style={{ color: '#00ff88', fontSize: '1.6rem', fontWeight: 'bold', textDecoration: 'none' }}
                       >
-                        WhatsApp: 201096605584
+                        WhatsApp: +20 109 660 5584
                       </a>
                     </div>
                   </div>
@@ -215,10 +284,15 @@ Thank you!
                   ) : (
                     <>
                       {cartItems.map((item, i) => {
-                        const displayPrice = item.isPreOrder ? 999 : parseFloat(item.price.replace(/[^0-9.]/g, ''))  0;
+                        const displayPrice = item.isPreOrder ? FULL_PRICE : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
                         return (
                           <div key={i} className="cart-item">
-                            <img src={item.mainImage  item.image} alt={item.name} className="item-image" />
+                            <img 
+                              src={item.mainImage || item.image} 
+                              alt={item.name} 
+                              className="item-image" 
+                              onError={(e) => e.target.src = 'https://via.placeholder.com/80'} 
+                            />
                             <div className="item-info">
                               <h4>{item.name}</h4>
                               {item.selectedSize && <p>Size: {item.selectedSize}</p>}
@@ -234,7 +308,11 @@ Thank you!
                               <p className="item-price">{(displayPrice * item.quantity).toLocaleString()} EGP</p>
 
                               <div className="quantity-controls">
-                                <button className="quantity-btn" onClick={() => updateQuantity(item, item.quantity - 1)} disabled={item.quantity === 1}>
+                                <button 
+                                  className="quantity-btn" 
+                                  onClick={() => updateQuantity(item, item.quantity - 1)} 
+                                  disabled={item.quantity === 1}
+                                >
                                   <Minus size={18} />
                                 </button>
                                 <span>{item.quantity}</span>
@@ -250,14 +328,14 @@ Thank you!
                         );
                       })}
 
-<div style={{ marginTop: '30px', padding: '20px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}>
+                      <div style={{ marginTop: '30px', padding: '20px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '1.3rem' }}>
                           <span>Subtotal</span>
                           <span>{totalAmount.toLocaleString()} EGP</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '1.3rem' }}>
                           <span>Shipping</span>
-                          <span>100 EGP</span>
+                          <span>{SHIPPING_COST} EGP</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.8rem', fontWeight: 'bold', color: '#00ff88', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                           <span>Total</span>
@@ -283,7 +361,8 @@ Thank you!
                       <label><User size={20} /> Full Name *</label>
                       <input type="text" placeholder="Enter your full name" value={name} onChange={e => setName(e.target.value)} />
                     </div>
-<div className="form-group">
+
+                    <div className="form-group">
                       <label><Phone size={20} /> WhatsApp Number *</label>
                       <input type="tel" placeholder="01xxxxxxxxx" value={phone} onChange={e => setPhone(e.target.value)} />
                     </div>
@@ -311,17 +390,18 @@ Thank you!
                         Questions or want to track your order?
                       </p>
                       <a href="https://wa.me/201096605584" target="_blank" rel="noopener noreferrer" style={{ color: '#00ff88', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none' }}>
-                        WhatsApp: 201096605584
+                        WhatsApp: +20 109 660 5584
                       </a>
                     </div>
 
                     <button
                       onClick={submitOrder}
-                      disabled={!name  !phone || !address}
+                      disabled={!name || !phone || !address}
                       style={{
                         width: '100%', padding: '18px', background: (name && phone && address) ? '#00ff88' : '#003322',
                         color: 'black', border: 'none', borderRadius: '12px', fontSize: '1.4rem',
                         fontWeight: 'bold', cursor: (name && phone && address) ? 'pointer' : 'not-allowed',
+                        opacity: (name && phone && address) ? 1 : 0.5
                       }}
                     >
                       Send Order Now
