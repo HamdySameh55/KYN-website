@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import signature from "../image/sign.png";
+import signature from "/image/sign.png";
 import { useNavigate } from "react-router-dom";
-import home5 from '../image/home5.jpg';
-import about from '../image/about.jpg';
+import home5 from '/image/home5.jpg';
+import about from '/image/about.jpg';
 
 export default function About() {
   const navigate = useNavigate();

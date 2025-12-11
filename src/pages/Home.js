@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import signature from "../image/sign.png";
+import signature from "/image/sign.png";
 import { useNavigate } from "react-router-dom";
-import home1 from '../image/home1.jpg';
-import home2 from '../image/home2.jpg';
-import home3 from '../image/home3.jpg';
-import home5 from '../image/home5.jpg';
-import Giltshflarecard from '../image/Giltshflarecard.jpg';
-import BlazeGazeecard from '../image/BlazeGazecard.jpg';
-import KYNcard from '../image/KYNcard.jpg';
-import RebelAngelcard from '../image/RebelAngelcard.jpg';
-import Giltshflare4 from '../image/Giltshflare4.jpg';
+import home1 from '/image/home1.jpg';
+import home2 from '/image/home2.jpg';
+import home3 from '/image/home3.jpg';
+import home5 from '/image/home5.jpg';
+import Giltshflarecard from '/image/Giltshflarecard.jpg';
+import BlazeGazeecard from '/image/BlazeGazecard.jpg';
+import KYNcard from '/image/KYNcard.jpg';
+import RebelAngelcard from '/image/RebelAngelcard.jpg';
+import Giltshflare4 from '/image/Giltshflare4.jpg';
 export default function Home() {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);

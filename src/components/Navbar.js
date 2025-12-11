@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Plus, Minus, Trash2, User, Phone, MapPin, CheckCircle2 } from 'lucide-react';
-import Logo from '../image/kyn_logo_transparent.png';
+import Logo from '/image/kyn_logo_transparent.png';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

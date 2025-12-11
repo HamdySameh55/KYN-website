@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // الصور
-import Giltshflarecard from '../image/Giltshflarecard.jpg';
-import BlazeGazeecard from '../image/BlazeGazecard.jpg';
-import KYNcard from '../image/KYNcard.jpg';
-import RebelAngelcard from '../image/RebelAngelcard.jpg';
-import Antigravirycard from '../image/Antigravirycard.jpg';
+import Giltshflarecard from '/image/Giltshflarecard.jpg';
+import BlazeGazeecard from '/image/BlazeGazecard.jpg';
+import KYNcard from '/image/KYNcard.jpg';
+import RebelAngelcard from '/image/RebelAngelcard.jpg';
+import Antigravirycard from '/image/Antigravirycard.jpg';
 
 export default function Products() {
   const navigate = useNavigate();

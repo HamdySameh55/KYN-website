@@ -1,7 +1,7 @@
 import React from "react";
 import { FaInstagram, FaTiktok, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Logo from "../image/kyn_logo_transparent.png";
+import Logo from "/image/kyn_logo_transparent.png";
 
 export default function Footer() {
   const footerStyle = {

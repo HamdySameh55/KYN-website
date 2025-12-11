@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaInstagram, FaTiktok, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-import signature from "../image/sign.png";
+import signature from "/image/sign.png";
 import './Contact.css';
 
 export default function Contact() {
