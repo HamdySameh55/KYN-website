@@ -5,7 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Plus, Minus, Trash2, User, Phone, MapPin, CheckCircle2 } from 'lucide-react';
-import Logo from '/image/kyn_logo_transparent.png';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -113,7 +112,6 @@ Thank you!
     setStep(1);
   };
 
-  // دالة جديدة لإغلاق الـ mobile menu بعد الضغط على أي رابط
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
@@ -153,8 +151,6 @@ Thank you!
         .form-group label { display:flex; align-items:center; gap:8px; color:#ccc; font-size:.95rem; }
         .form-group input,.form-group textarea { padding:14px; border-radius:12px; border:none; background:rgba(255,255,255,.08); color:white; font-size:1rem; }
         .form-group input::placeholder,.form-group textarea::placeholder { color:#777; }
-
-        /* Mobile Menu Styles */
         .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.98); z-index: 1500; display: flex; flex-direction: column; padding: 20px; }
         .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .mobile-menu-links { display: flex; flex-direction: column; gap: 20px; }
@@ -166,12 +162,23 @@ Thank you!
       <nav className="navbar">
         <div className="container">
           <div className="desktop-only">
-            <Link to="/"><motion.img src={Logo} alt="KYN" className="logo" whileHover={{ scale: 1.35 }} /></Link>
+            <Link to="/">
+              <motion.img 
+                src="/image/kyn_logo_transparent.png" 
+                alt="KYN" 
+                className="logo" 
+                whileHover={{ scale: 1.35 }} 
+              />
+            </Link>
           </div>
 
           <div className="desktop-menu desktop-only">
             {navLinks.map(link => (
-              <Link key={link.name} to={link.path} className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}>
+              <Link 
+                key={link.name} 
+                to={link.path} 
+                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+              >
                 {link.name}
               </Link>
             ))}
@@ -182,7 +189,15 @@ Thank you!
           </button>
 
           <div className="mobile-only mobile-logo">
-            <Link to="/"><motion.img src={Logo} alt="KYN" className="logo" style={{height:'72px'}} whileTap={{ scale: 0.92 }}/></Link>
+            <Link to="/">
+              <motion.img 
+                src="/image/kyn_logo_transparent.png" 
+                alt="KYN" 
+                className="logo" 
+                style={{height:'72px'}} 
+                whileTap={{ scale: 0.92 }}
+              />
+            </Link>
           </div>
 
           <div onClick={() => { setIsCartOpen(true); setStep(1); setOrderSent(false); }} className="icon-btn relative cursor-pointer">
@@ -204,7 +219,11 @@ Thank you!
               transition={{ duration: 0.3 }}
             >
               <div className="mobile-menu-header">
-                <motion.img src={Logo} alt="KYN" style={{ height: '60px' }} />
+                <motion.img 
+                  src="/image/kyn_logo_transparent.png" 
+                  alt="KYN" 
+                  style={{ height: '60px' }} 
+                />
                 <button onClick={() => setIsMobileMenuOpen(false)} className="icon-btn">
                   <X size={32} />
                 </button>
@@ -229,11 +248,16 @@ Thank you!
 
       <div className="page-spacer" />
 
-      {/* باقي الكود (الـ Cart) زي ما هو بدون أي تغيير */}
       <AnimatePresence>
         {isCartOpen && (
           <>
-            <motion.div className="fixed inset-0 bg-black/80 z-40" onClick={closeCart} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+            <motion.div 
+              className="fixed inset-0 bg-black/80 z-40" 
+              onClick={closeCart} 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+            />
             <motion.div 
               className="cart-panel" 
               initial={{ x: "100%" }} 

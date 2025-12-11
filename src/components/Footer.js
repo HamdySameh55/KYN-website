@@ -1,7 +1,6 @@
 import React from "react";
 import { FaInstagram, FaTiktok, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Logo from "/image/kyn_logo_transparent.png";
 
 export default function Footer() {
   const footerStyle = {
@@ -71,7 +70,7 @@ export default function Footer() {
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <img src={Logo} alt="KYN Logo" style={logoStyle} />
+        <img src="/image/kyn_logo_transparent.png" alt="KYN Logo" style={logoStyle} />
       </motion.div>
 
       <div style={sloganStyle}>
@@ -116,7 +115,7 @@ export default function Footer() {
         <motion.a
           href="mailto:kynegptian@gmail.com"
           style={linkStyle}
-          whileHover={{ scale: { scale: 1.4, color: "#FF4646" } }}
+          whileHover={{ scale: 1.4, color: "#FF4646" }}
           whileTap={{ scale: 0.9 }}
         >
           <FaEnvelope size={30} />

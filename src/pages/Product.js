@@ -2,13 +2,6 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
-// الصور
-import Giltshflarecard from '/image/Giltshflarecard.jpg';
-import BlazeGazeecard from '/image/BlazeGazecard.jpg';
-import KYNcard from '/image/KYNcard.jpg';
-import RebelAngelcard from '/image/RebelAngelcard.jpg';
-import Antigravirycard from '/image/Antigravirycard.jpg';
-
 export default function Products() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,11 +24,11 @@ export default function Products() {
   }, []);
 
   const allProducts = useMemo(() => [
-    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: Giltshflarecard, category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
-    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: BlazeGazeecard, category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
-    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: KYNcard, category: "knitted-sweaters", description: "KYN – Made Different" },
-    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: RebelAngelcard, category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
-    { id: 301, name: "Antigravity", price: "999 EGP", originalPrice: "1400 EGP", image: Antigravirycard, category: "knitted-sweaters", description: "Antigravity by KYN – Defy the Ordinary" }
+    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/Giltshflarecard.jpg", category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
+    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/BlazeGazecard.jpg", category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
+    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/KYNcard.jpg", category: "knitted-sweaters", description: "KYN – Made Different" },
+    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/RebelAngelcard.jpg", category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
+    { id: 301, name: "Antigravity", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/Antigravirycard.jpg", category: "knitted-sweaters", description: "Antigravity by KYN – Defy the Ordinary" }
   ], []);
 
   const categories = [
@@ -112,7 +105,7 @@ export default function Products() {
           Your Step, Your Thread, Your Family
         </motion.p>
 
-        {/* Search Bar - أصغر من عرض الصفحة ومتظبط 100% */}
+        {/* Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

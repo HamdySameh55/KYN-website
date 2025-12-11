@@ -5,30 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../context/CartContext";
 
-import Giltshflarecard from '/image/Giltshflarecard.jpg';
-import Giltshflare1 from '/image/Giltshflare1.jpg';
-import Giltshflare2 from '/image/Giltshflare2.jpg';
-import Giltshflare3 from '/image/Giltshflare3.jpg';
-import Giltshflare4 from '/image/Giltshflare4.jpg';
-import Giltshflare5 from '/image/Giltshflare5.jpg';
-import BlazeGaze1 from '/image/BlazeGaze1.jpg';
-import BlazeGaze2 from '/image/BlazeGaze2.jpg';
-import BlazeGaze3 from '/image/BlazeGaze3.jpg';
-import BlazeGaze4 from '/image/BlazeGaze4.jpg';
-import BlazeGazeecard from '/image/BlazeGazecard.jpg';
-import KYNcard from '/image/KYNcard.jpg';
-import KYN1 from '/image/KYN1.jpg';
-import KYN2 from '/image/KYN2.jpg';
-import home2 from '/image/home2.jpg';
-import RebelAngelcard from '/image/RebelAngelcard.jpg';
-import RebelAngel2 from '/image/RebelAngel2.jpg';
-import RebelAngel3 from '/image/RebelAngel3.jpg';
-import RebelAngel4 from '/image/RebelAngel4.jpg';
-import Antigravirycard from '/image/Antigravirycard.jpg';
-import Antigraviry1 from '/image/Antigravity1.jpg';
-import Antigraviry2 from '/image/Antigravity2.jpg';
-import Antigraviry3 from '/image/Antigravity3.jpg';
-
 const allProducts = [
   {
     id: 401,
@@ -39,7 +15,14 @@ const allProducts = [
     tag: "Best Seller",
     colors: ["#000"],
     sizes: ["M", "L", "XL", "XXL"],
-    images: [Giltshflarecard, Giltshflare1, Giltshflare2, Giltshflare3, Giltshflare4, Giltshflare5],
+    images: [
+      "/image/Giltshflarecard.jpg",
+      "/image/Giltshflare1.jpg",
+      "/image/Giltshflare2.jpg",
+      "/image/Giltshflare3.jpg",
+      "/image/Giltshflare4.jpg",
+      "/image/Giltshflare5.jpg"
+    ],
     soldOut: true
   },
   {
@@ -50,7 +33,13 @@ const allProducts = [
     description: "Blaze Gaze is the sweater you throw on when you want to look good without even trying...",
     colors: ["#ffffffff"],
     sizes: ["M", "L"],
-    images: [BlazeGazeecard, BlazeGaze1, BlazeGaze2 ,BlazeGaze3 ,BlazeGaze4],
+    images: [
+      "/image/BlazeGazecard.jpg",
+      "/image/BlazeGaze1.jpg",
+      "/image/BlazeGaze2.jpg",
+      "/image/BlazeGaze3.jpg",
+      "/image/BlazeGaze4.jpg"
+    ],
     soldOut: false
   },
   {
@@ -61,7 +50,12 @@ const allProducts = [
     description: "KYN is the go-to sweater for your everyday vibe...",
     colors: ["#0c9adbff"],
     sizes: ["M", "L"],
-    images: [KYNcard, KYN1, home2 ,KYN2],
+    images: [
+      "/image/KYNcard.jpg",
+      "/image/KYN1.jpg",
+      "/image/home2.jpg",
+      "/image/KYN2.jpg"
+    ],
     soldOut: true
   },
   {
@@ -71,8 +65,13 @@ const allProducts = [
     originalPrice: "1400 EGP",
     description: "Everyone thinks angels are gentle… until they meet the one holding the gun. Rebel Angel – the sweater for those who pray in silence and shoot in noise",
     colors: ["#000000ff"],
-    sizes: ["M", "L" ,"XL"],
-    images: [RebelAngelcard, RebelAngel2, RebelAngel3, RebelAngel4],
+    sizes: ["M", "L", "XL"],
+    images: [
+      "/image/RebelAngelcard.jpg",
+      "/image/RebelAngel2.jpg",
+      "/image/RebelAngel3.jpg",
+      "/image/RebelAngel4.jpg"
+    ],
     soldOut: false
   },
   {
@@ -82,8 +81,13 @@ const allProducts = [
     originalPrice: "1400 EGP",
     description: "Rebel Angel by KYN brings a bold mix of innocence and chaos...",
     colors: ["#6f6f6f"],
-    sizes: ["S","M", "L" ,"XL"],
-    images: [Antigravirycard, Antigraviry1, Antigraviry2, Antigraviry3],
+    sizes: ["S", "M", "L", "XL"],
+    images: [
+      "/image/Antigravirycard.jpg",
+      "/image/Antigravity1.jpg",
+      "/image/Antigravity2.jpg",
+      "/image/Antigravity3.jpg"
+    ],
     soldOut: false
   },
 ];
@@ -101,10 +105,9 @@ export default function ProductDetails() {
   const product = allProducts.find(p => p.id === parseInt(id));
   const productImages = product?.images || [];
 
-  // Scroll to top when component mounts (لما تدخل الصفحة)
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]); // كل ما الـ id يتغير = منتج جديد = ارجع فوق
+  }, [id]);
 
   useEffect(() => {
     if (product && productImages.length > 0) {
@@ -171,7 +174,6 @@ export default function ProductDetails() {
 
   const basePrice = parseFloat(product.price.replace(" EGP", ""));
   const displayedPrice = product.soldOut ? basePrice : basePrice;
-
   const mainImage = productImages[mainImageIndex];
 
   return (
@@ -198,7 +200,7 @@ export default function ProductDetails() {
               border: "3px solid #000"
             }}
           >
-            {product.soldOut ? "Pre-Order  Added Successfully!" : "Added to cart successfully!"}
+            {product.soldOut ? "Pre-Order Added Successfully!" : "Added to cart successfully!"}
           </motion.div>
         )}
       </AnimatePresence>
@@ -325,7 +327,7 @@ export default function ProductDetails() {
                 )}
                 {product.soldOut && (
                   <div style={{ fontSize: "1.5rem", color: "#ff3366", marginTop: "15px", fontWeight: "bold" }}>
-                   We'll notify you as soon as it's back in stock
+                    We'll notify you as soon as it's back in stock
                   </div>
                 )}
               </div>
@@ -403,7 +405,7 @@ export default function ProductDetails() {
                     cursor: "pointer"
                   }}
                 >
-                  {product.soldOut ? "Pre-Order " : "Add to Cart"}
+                  {product.soldOut ? "Pre-Order" : "Add to Cart"}
                 </motion.button>
 
                 <motion.button
@@ -433,7 +435,6 @@ export default function ProductDetails() {
                 marginTop: "40px",
                 flexWrap: "wrap"
               }}>
-                {/* Size Guide */}
                 <div style={{
                   flex: "1",
                   minWidth: "330px",
@@ -505,7 +506,6 @@ export default function ProductDetails() {
                   </div>
                 </div>
 
-                {/* Washing Instructions */}
                 <div style={{
                   flex: "1",
                   minWidth: "330px",

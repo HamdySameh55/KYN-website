@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import signature from "/image/sign.png";
 import { useNavigate } from "react-router-dom";
-import home5 from '/image/home5.jpg';
-import about from '/image/about.jpg';
 
 export default function About() {
   const navigate = useNavigate();
@@ -48,14 +45,12 @@ export default function About() {
     id: 1,
     name: "Mahmoud Saber",
     role: "Founder & Visionary",
-    image: about,
     description: "Started the movement with a vision: premium streetwear for those who dare to stand out."
   },
   {
     id: 2,
     name: "Zeyad",
     role: "Brother & Partner",
-    image: home5,
     description: "The brother who stands beside Mahmoud, representing loyalty, unity, and the bond that keeps the brand strong."
   }
 ];
@@ -150,7 +145,7 @@ export default function About() {
         ))}
         
         <motion.img
-          src={signature}
+          src="/image/sign.png"
           alt="background signature"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.08 }}
@@ -421,165 +416,165 @@ export default function About() {
             ))}
           </div>
         </motion.div>
-{/* فريق العمل */}
-<motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
-  style={{
-    width: "100%",
-    maxWidth: "1000px",
-    marginBottom: "60px",
-  }}
->
-  <h2 style={{
-    fontSize: isMobile ? "2rem" : "2.5rem",
-    textAlign: "center",
-    marginBottom: "40px",
-    background: "linear-gradient(135deg, #fff, #aaa)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    fontWeight: "700",
-    lineHeight: "1.2",
-  }}>
-    Our Family
-  </h2>
-  
-  <div style={{
-    display: "flex",            // بدل grid نخلي flex
-    justifyContent: "center",   // نركّز الكروت في النص
-    gap: "25px",                // مسافة بين الكروت
-    flexWrap: "wrap",           // لو الشاشة صغيرة الكروت تنزل تحت
-  }}>
-    {teamMembers.map((member, index) => (
-      <motion.div
-        key={member.id}
-        initial={{ opacity: 0, y: 30, rotateY: -15 }}
-        whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-        transition={{ 
-          duration: 0.6, 
-          delay: index * 0.2,
-          type: "spring",
-          stiffness: 100
-        }}
-        viewport={{ once: true }}
-        whileHover={{ 
-          y: -10,
-          rotateY: 5,
-          scale: 1.02,
-        }}
-        onHoverStart={() => setHoveredCard(member.id)}
-        onHoverEnd={() => setHoveredCard(null)}
-        style={{
-          background: "rgba(20,20,20,0.7)",
-          backdropFilter: "blur(10px)",
-          borderRadius: "20px",
-          overflow: "hidden",
-          border: "1px solid rgba(255,255,255,0.1)",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-          transformStyle: "preserve-3d",
-          perspective: "1000px",
-          cursor: "pointer",
-          minWidth: "250px",
-          maxWidth: "300px",
-          flex: "0 0 auto",
-        }}
-      >
-        <div style={{
-          width: "100%",
-          height: isMobile ? "200px" : "220px",
-          overflow: "hidden",
-          position: "relative",
-        }}>
-          <motion.img
-            src={member.image}
-            alt={member.name}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
+
+        {/* فريق العمل */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            width: "100%",
+            maxWidth: "1000px",
+            marginBottom: "60px",
+          }}
+        >
+          <h2 style={{
+            fontSize: isMobile ? "2rem" : "2.5rem",
+            textAlign: "center",
+            marginBottom: "40px",
+            background: "linear-gradient(135deg, #fff, #aaa)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "700",
+            lineHeight: "1.2",
+          }}>
+            Our Family
+          </h2>
           
           <div style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "60%",
-            background: "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
-          }} />
-        </div>
-        
-        <div style={{
-          padding: "20px",
-          textAlign: "center",
-        }}>
-          <h3 style={{
-            fontSize: isMobile ? "1.2rem" : "1.3rem",
-            fontWeight: "700",
-            marginBottom: "6px",
-            color: "#fff",
+            display: "flex",
+            justifyContent: "center",
+            gap: "25px",
+            flexWrap: "wrap",
           }}>
-            {member.name}
-          </h3>
-          
-          <p style={{
-            fontSize: isMobile ? "0.9rem" : "1rem",
-            fontWeight: "600",
-            marginBottom: "12px",
-            color: "rgba(255,255,255,0.7)",
-          }}>
-            {member.role}
-          </p>
-          
-          <motion.p
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ 
-              opacity: hoveredCard === member.id ? 1 : 0,
-              height: hoveredCard === member.id ? "auto" : 0,
-            }}
-            style={{
-              fontSize: "0.85rem",
-              lineHeight: "1.5",
-              color: "rgba(255,255,255,0.8)",
-              overflow: "hidden",
-            }}
-          >
-            {member.description}
-          </motion.p>
-        </div>
-        
-        {/* تأثير اللمعان */}
-        <motion.div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            background: "linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)",
-            top: 0,
-            left: "-100%",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-          animate={{
-            left: ["-100%", "200%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: index * 0.5,
-            ease: "linear",
-          }}
-        />
-      </motion.div>
-    ))}
-  </div>
-</motion.div>
-
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 30, rotateY: -15 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  y: -10,
+                  rotateY: 5,
+                  scale: 1.02,
+                }}
+                onHoverStart={() => setHoveredCard(member.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+                style={{
+                  background: "rgba(20,20,20,0.7)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+                  transformStyle: "preserve-3d",
+                  perspective: "1000px",
+                  cursor: "pointer",
+                  minWidth: "250px",
+                  maxWidth: "300px",
+                  flex: "0 0 auto",
+                }}
+              >
+                <div style={{
+                  width: "100%",
+                  height: isMobile ? "200px" : "220px",
+                  overflow: "hidden",
+                  position: "relative",
+                }}>
+                  <motion.img
+                    src={member.id === 1 ? "/image/about.jpg" : "../image/home5.jpg"}
+                    alt={member.name}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  
+                  <div style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "60%",
+                    background: "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
+                  }} />
+                </div>
+                
+                <div style={{
+                  padding: "20px",
+                  textAlign: "center",
+                }}>
+                  <h3 style={{
+                    fontSize: isMobile ? "1.2rem" : "1.3rem",
+                    fontWeight: "700",
+                    marginBottom: "6px",
+                    color: "#fff",
+                  }}>
+                    {member.name}
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: isMobile ? "0.9rem" : "1rem",
+                    fontWeight: "600",
+                    marginBottom: "12px",
+                    color: "rgba(255,255,255,0.7)",
+                  }}>
+                    {member.role}
+                  </p>
+                  
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ 
+                      opacity: hoveredCard === member.id ? 1 : 0,
+                      height: hoveredCard === member.id ? "auto" : 0,
+                    }}
+                    style={{
+                      fontSize: "0.85rem",
+                      lineHeight: "1.5",
+                      color: "rgba(255,255,255,0.8)",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {member.description}
+                  </motion.p>
+                </div>
+                
+                {/* تأثير اللمعان */}
+                <motion.div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    background: "linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)",
+                    top: 0,
+                    left: "-100%",
+                    zIndex: 2,
+                    pointerEvents: "none",
+                  }}
+                  animate={{
+                    left: ["-100%", "200%"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.5,
+                    ease: "linear",
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* دعوة للعمل */}
         <motion.div

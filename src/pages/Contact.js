@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaInstagram, FaTiktok, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-import signature from "/image/sign.png";
 import './Contact.css';
 
 export default function Contact() {
@@ -22,9 +21,6 @@ export default function Contact() {
 
   const [status, setStatus] = useState('');
   const [showToast, setShowToast] = useState(false);
-
-  // باقي الكود زي ما هو ...
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +54,8 @@ export default function Contact() {
     });
 
     if (name === "returnRequest" && checked) {
-      setShowToast(true); // عرض الرسالة
-      setTimeout(() => setShowToast(false), 3000); // اختفاء الرسالة بعد 3 ثواني
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     }
   };
 
@@ -93,31 +89,33 @@ export default function Contact() {
               whiteSpace: "pre-line"
             }}
           >
-            📦 Terms&conditions
-Welcome to our page! We offer trusted quality products and a smooth, reliable shopping experience.
-Exchanges
-Exchanges are available within 2 days of receiving your order.
-Customers must pay the shipping fees for all exchange requests.
-Items must be in original condition (unused, unwashed, with tags and packaging)
-Returns
-No returns are accepted unless the item has a manufacturing defect.
-Defects must be reported within 24-48 hours with photos or video.
-Once confirmed, we will replace the item or offer a suitable solution.
-Sizing
-Please check your size carefully before placing the order.
-If the wrong size is chosen, the customer is responsible for all exchange shipping fees.
-Shipping & Delivery
-Delivery time is 5-7 business days.
-Ensure your address and phone number are correct to avoid delays.
-Orders may be delayed or canceled if the courier cannot reach you.
-Customer Support
-If you have any questions, feel free to contact us before placing your order. We are happy to assist you.
+            Terms&conditions
+            Welcome to our page! We offer trusted quality products and a smooth, reliable shopping experience.
+            Exchanges
+            Exchanges are available within 2 days of receiving your order.
+            Customers must pay the shipping fees for all exchange requests.
+            Items must be in original condition (unused, unwashed, with tags and packaging)
+            Returns
+            No returns are accepted unless the item has a manufacturing defect.
+            Defects must be reported within 24-48 hours with photos or video.
+            Once confirmed, we will replace the item or offer a suitable solution.
+            Sizing
+            Please check your size carefully before placing the order.
+            If the wrong size is chosen, the customer is responsible for all exchange shipping fees.
+            Shipping & Delivery
+            Delivery time is 5-7 business days.
+            Ensure your address and phone number are correct to avoid delays.
+            Orders may be delayed or canceled if the courier cannot reach you.
+            Customer Support
+            If you have any questions, feel free to contact us before placing your order. We are happy to assist you.
           </motion.div>
         )}
       </AnimatePresence>
       {/* =================================== */}
 
-      <div className="contact-background" style={{ backgroundImage: `url(${signature})` }} />
+      <div className="contact-background">
+        <img src="/image/sign.png" alt="signature background" />
+      </div>
       <div className="contact-overlay" />
 
       <div className="contact-content">
