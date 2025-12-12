@@ -145,7 +145,7 @@ export default function About() {
         ))}
         
         <motion.img
-          src="/image/sign.png"
+          src="/KYN-website/image/sign.png"
           alt="background signature"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.08 }}
@@ -489,7 +489,7 @@ export default function About() {
                   position: "relative",
                 }}>
                   <motion.img
-                    src={member.id === 1 ? "/image/about.jpg" : "../image/home5.jpg"}
+                    src={member.id === 1 ? "/KYN-website/image/about.jpg" : "/KYN-website/image/home5.jpg"}
                     alt={member.name}
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4 }}

@@ -164,7 +164,7 @@ Thank you!
           <div className="desktop-only">
             <Link to="/">
               <motion.img 
-                src="/image/kyn_logo_transparent.png" 
+                src="/KYN-website/image/kyn_logo_transparent.png" 
                 alt="KYN" 
                 className="logo" 
                 whileHover={{ scale: 1.35 }} 
@@ -191,7 +191,7 @@ Thank you!
           <div className="mobile-only mobile-logo">
             <Link to="/">
               <motion.img 
-                src="/image/kyn_logo_transparent.png" 
+                src="/KYN-website/image/kyn_logo_transparent.png" 
                 alt="KYN" 
                 className="logo" 
                 style={{height:'72px'}} 
@@ -220,7 +220,7 @@ Thank you!
             >
               <div className="mobile-menu-header">
                 <motion.img 
-                  src="/image/kyn_logo_transparent.png" 
+                  src="/KYN-website/image/kyn_logo_transparent.png" 
                   alt="KYN" 
                   style={{ height: '60px' }} 
                 />

@@ -70,7 +70,7 @@ export default function Footer() {
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <img src="/image/kyn_logo_transparent.png" alt="KYN Logo" style={logoStyle} />
+        <img src="/KYN-website/image/kyn_logo_transparent.png" alt="KYN Logo" style={logoStyle} />
       </motion.div>
 
       <div style={sloganStyle}>

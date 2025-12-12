@@ -114,7 +114,7 @@ export default function Contact() {
       {/* =================================== */}
 
       <div className="contact-background">
-        <img src="/image/sign.png" alt="signature background" />
+        <img src="/KYN-website/image/sign.png" alt="signature background" />
       </div>
       <div className="contact-overlay" />
 

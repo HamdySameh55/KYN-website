@@ -9,17 +9,17 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
 
   const brandCards = [
-    { id: 1, name: "", image: "/image/Giltshflare4.jpg", description: "", rotate: -8, y: 0, scale: 0.92 },
-    { id: 2, name: "", image: "/image/home2.jpg", description: "", rotate: 4, y: 15, scale: 0.95 },
-    { id: 3, name: "", image: "/image/home3.jpg", description: "", rotate: -3, y: 30, scale: 0.98 },
-    { id: 4, name: "", image: "/image/home5.jpg", description: "", rotate: 2, y: 45, scale: 1 },
+    { id: 1, name: "", image: "/KYN-website/image/Giltshflare4.jpg", description: "", rotate: -8, y: 0, scale: 0.92 },
+    { id: 2, name: "", image: "/KYN-website/image/home2.jpg", description: "", rotate: 4, y: 15, scale: 0.95 },
+    { id: 3, name: "", image: "/KYN-website/image/home3.jpg", description: "", rotate: -3, y: 30, scale: 0.98 },
+    { id: 4, name: "", image: "/KYN-website/image/home5.jpg", description: "", rotate: 2, y: 45, scale: 1 },
   ];
 
   const products = [
-    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/Giltshflarecard.jpg", category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
-    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/BlazeGazecard.jpg", category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
-    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/KYNcard.jpg", category: "knitted-sweaters", description: "KYN – Made Different" },
-    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/RebelAngelcard.jpg", category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
+    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/Giltshflarecard.jpg", category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
+    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/BlazeGazecard.jpg", category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
+    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/KYNcard.jpg", category: "knitted-sweaters", description: "KYN – Made Different" },
+    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/RebelAngelcard.jpg", category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
   ];
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function Home() {
       {showSplash && (
         <div style={splashStyle}>
           <motion.img 
-            src="/image/sign.png" 
+            src="/KYN-website/image/sign.png" 
             alt="KYN" 
             initial={{ opacity: 0, scale: 0.8 }} 
             animate={{ opacity: 1, scale: 1 }} 
@@ -90,7 +90,7 @@ export default function Home() {
       {/* خلفية السيجنيتشر بعد السبلاتش */}
       {!showSplash && (
         <motion.img
-          src="/image/sign.png"
+          src="/KYN-website/image/sign.png"
           alt="background signature"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.12 }}

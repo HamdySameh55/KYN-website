@@ -24,11 +24,11 @@ export default function Products() {
   }, []);
 
   const allProducts = useMemo(() => [
-    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/Giltshflarecard.jpg", category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
-    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/BlazeGazecard.jpg", category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
-    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/KYNcard.jpg", category: "knitted-sweaters", description: "KYN – Made Different" },
-    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/RebelAngelcard.jpg", category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
-    { id: 301, name: "Antigravity", price: "999 EGP", originalPrice: "1400 EGP", image: "/image/Antigravirycard.jpg", category: "knitted-sweaters", description: "Antigravity by KYN – Defy the Ordinary" }
+    { id: 401, name: "Giltsh Flare", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/Giltshflarecard.jpg", category: "knitted-sweaters", description: "Giltsh Flare by KYN – Shine Different" },
+    { id: 402, name: "Blaze Gaze", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/BlazeGazecard.jpg", category: "knitted-sweaters", description: "Blaze Gaze by KYN – Ignite Your Look" },
+    { id: 101, name: "KYN – Made Different", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/KYNcard.jpg", category: "knitted-sweaters", description: "KYN – Made Different" },
+    { id: 201, name: "Rebel Angel", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/RebelAngelcard.jpg", category: "knitted-sweaters", description: "Rebel Angel by KYN – Break the Halo." },
+    { id: 301, name: "Antigravity", price: "999 EGP", originalPrice: "1400 EGP", image: "/KYN-website/image/Antigravirycard.jpg", category: "knitted-sweaters", description: "Antigravity by KYN – Defy the Ordinary" }
   ], []);
 
   const categories = [

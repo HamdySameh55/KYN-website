@@ -16,12 +16,12 @@ const allProducts = [
     colors: ["#000"],
     sizes: ["M", "L", "XL", "XXL"],
     images: [
-      "/image/Giltshflarecard.jpg",
-      "/image/Giltshflare1.jpg",
-      "/image/Giltshflare2.jpg",
-      "/image/Giltshflare3.jpg",
-      "/image/Giltshflare4.jpg",
-      "/image/Giltshflare5.jpg"
+      "/KYN-website/image/Giltshflarecard.jpg",
+      "/KYN-website/image/Giltshflare1.jpg",
+      "/KYN-website/image/Giltshflare2.jpg",
+      "/KYN-website/image/Giltshflare3.jpg",
+      "/KYN-website/image/Giltshflare4.jpg",
+      "/KYN-website/image/Giltshflare5.jpg"
     ],
     soldOut: true
   },
@@ -34,11 +34,11 @@ const allProducts = [
     colors: ["#ffffffff"],
     sizes: ["M", "L"],
     images: [
-      "/image/BlazeGazecard.jpg",
-      "/image/BlazeGaze1.jpg",
-      "/image/BlazeGaze2.jpg",
-      "/image/BlazeGaze3.jpg",
-      "/image/BlazeGaze4.jpg"
+      "/KYN-website/image/BlazeGazecard.jpg",
+      "/KYN-website/image/BlazeGaze1.jpg",
+      "/KYN-website/image/BlazeGaze2.jpg",
+      "/KYN-website/image/BlazeGaze3.jpg",
+      "/KYN-website/image/BlazeGaze4.jpg"
     ],
     soldOut: false
   },
@@ -51,10 +51,10 @@ const allProducts = [
     colors: ["#0c9adbff"],
     sizes: ["M", "L"],
     images: [
-      "/image/KYNcard.jpg",
-      "/image/KYN1.jpg",
-      "/image/home2.jpg",
-      "/image/KYN2.jpg"
+      "/KYN-website/image/KYNcard.jpg",
+      "/KYN-website/image/KYN1.jpg",
+      "/KYN-website/image/home2.jpg",
+      "/KYN-website/image/KYN2.jpg"
     ],
     soldOut: true
   },
@@ -67,10 +67,10 @@ const allProducts = [
     colors: ["#000000ff"],
     sizes: ["M", "L", "XL"],
     images: [
-      "/image/RebelAngelcard.jpg",
-      "/image/RebelAngel2.jpg",
-      "/image/RebelAngel3.jpg",
-      "/image/RebelAngel4.jpg"
+      "/KYN-website/image/RebelAngelcard.jpg",
+      "/KYN-website/image/RebelAngel2.jpg",
+      "/KYN-website/image/RebelAngel3.jpg",
+      "/KYN-website/image/RebelAngel4.jpg"
     ],
     soldOut: false
   },
@@ -83,10 +83,10 @@ const allProducts = [
     colors: ["#6f6f6f"],
     sizes: ["S", "M", "L", "XL"],
     images: [
-      "/image/Antigravirycard.jpg",
-      "/image/Antigravity1.jpg",
-      "/image/Antigravity2.jpg",
-      "/image/Antigravity3.jpg"
+      "/KYN-website/image/Antigravirycard.jpg",
+      "/KYN-website/image/Antigravity1.jpg",
+      "/KYN-website/image/Antigravity2.jpg",
+      "/KYN-website/image/Antigravity3.jpg"
     ],
     soldOut: false
   },
